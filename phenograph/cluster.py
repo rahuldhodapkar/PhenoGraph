@@ -79,8 +79,8 @@ def cluster(data, k=30, directed=False, prune=False, min_cluster_size=10, jaccar
     if isinstance(data, sp.spmatrix) and data.shape[0] == data.shape[1]:
         print("Using neighbor information from provided graph, rather than computing neighbors directly", flush=True)
         lilmatrix = data.tolil()
-        d = np.vstack(lilmatrix.data).astype('float32')  # distances
-        idx = np.vstack(lilmatrix.rows).astype('int32')  # neighbor indices by row
+        d = sp.vstack(lilmatrix.data).astype('float32')  # distances
+        idx = sp.vstack(lilmatrix.rows).astype('int32')  # neighbor indices by row
         del lilmatrix
         assert idx.shape[0] == data.shape[0]
         k = idx.shape[1]
